@@ -1,6 +1,6 @@
  {
   "name": "Minecraft Wiki",
-  "description": "Visit minecraft wiki pages from omnibox prefix: 'mc'"
+  "description": "Visit minecraft wiki pages from omnibox prefix: 'mc'",
   "manifest_version": 2,
   "version": "1.0",
   "omnibox": {

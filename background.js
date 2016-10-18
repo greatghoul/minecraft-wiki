@@ -1,12 +1,16 @@
-const BASE_URL = 'http://minecraft-zh.gamepedia.com/api.php';
+const BASE_URL = 'http://minecraft-zh.gamepedia.com';
 
 function isBlank(text) {
   return /^\s*$/.test(text);
 }
 
+function isLink(text) {
+  return /^https?:\/\//i.test(text);
+}
+
 function suggestUrl(text) {
   let keyword = encodeURIComponent(text);
-  return `${BASE_URL}?action=opensearch&format=json&formatversion=2&search=${keyword}&namespace=0&limit=10&suggest=true`
+  return `${BASE_URL}/api.php?action=opensearch&format=json&formatversion=2&search=${keyword}&namespace=0&limit=10&suggest=true`
 }
 
 function navigate(url) {
@@ -38,7 +42,13 @@ function inputChangedHandler(text, suggest) {
     });
 }
 
-function inputEnteredHandler(link) {
+function inputEnteredHandler(content) {
+  let link = content;
+
+  if (!isLink(link)) {
+    link = `${BASE_URL}/index.php?search=${content}`;
+  }
+
   navigate(link);
 }
 
